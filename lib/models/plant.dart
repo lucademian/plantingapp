@@ -22,6 +22,7 @@ class Plant {
     double waterLevel,
     DateTime createdAt,
     this.user,
+    this.frequencyCount,
     this.frequencyDuration,
     this.growDuration,
   }) :
@@ -44,11 +45,25 @@ class Plant {
     this.waterLevel += waterIncrement;
   }
 
+  Map<String, dynamic> toMap() => {
+    'name': this.name,
+    'user': this.user,
+    'waterLevel': this.waterLevel,
+    'height': this.height,
+    'createdAt': this.createdAt,
+    'frequencyCount': this.frequencyCount,
+    'frequencyDuration': this.frequencyDuration.inDays,
+    'growDuration': this.growDuration.inDays,
+  };
+
   static Plant fromDoc(DocumentSnapshot doc) => Plant(
     doc.get("name") as String,
     doc.id,
     height: doc.get("height") as double,
     waterLevel: doc.get("waterLevel") as double,
     createdAt: DateTime.fromMillisecondsSinceEpoch((doc.get("createdAt") as Timestamp).millisecondsSinceEpoch),
+    frequencyCount: doc.get("frequencyCount") as int,
+    frequencyDuration: Duration(days: doc.get("frequencyDuration") as int),
+    growDuration: Duration(days: doc.get("growDuration") as int),
   );
 }

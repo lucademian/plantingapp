@@ -79,14 +79,14 @@ class _NewPlantPageState extends State<NewPlantPage> {
                             borderRadius: BorderRadius.all(Radius.circular(6)),
                             child: TextFormField(
                               keyboardType: TextInputType.number,
-                              validator: (val) => int.tryParse(val) == null ? null : "Invalid Number",
+                              validator: (val) => int.tryParse(val) != null ? null : "Invalid Number",
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                                 fillColor: Colors.black12,
                                 filled: true,
                               ),
                               onSaved: (newValue) {
-                                formData['xPer'] = newValue;
+                                formData['xPer'] = int.parse(newValue);
                               },
                             ),
                           ),
@@ -148,14 +148,14 @@ class _NewPlantPageState extends State<NewPlantPage> {
                             borderRadius: BorderRadius.all(Radius.circular(6)),
                             child: TextFormField(
                               keyboardType: TextInputType.number,
-                              validator: (val) => int.tryParse(val) == null ? null : "Invalid Number",
+                              validator: (val) => int.tryParse(val) != null ? null : "Invalid Number",
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                                 fillColor: Colors.black12,
                                 filled: true,
                               ),
                               onSaved: (newValue) {
-                                formData['xDur'] = newValue;
+                                formData['xDur'] = int.parse(newValue);
                               },
                             ),
                           ),
@@ -201,8 +201,10 @@ class _NewPlantPageState extends State<NewPlantPage> {
                         width: MediaQuery.of(context).size.width - 100,
                         theme: SolidButtonTheme.green,
                         onPressed: () {
-                          _formKey.currentState.save();
-                          _submitForm(context);
+                          if (_formKey.currentState.validate()) {
+                            _formKey.currentState.save();
+                            _submitForm(context);
+                          }
                         },
                       ),
                     ),
@@ -220,6 +222,9 @@ class _NewPlantPageState extends State<NewPlantPage> {
     Plant newPlant = Plant(
       formData["name"],
       "No ID Yet",
+      frequencyCount: formData["xPer"],
+      frequencyDuration: formData["per"],
+      growDuration: Duration(days: (formData["dur"] as Duration).inDays * formData["xDur"]),
       user: Provider.of<AnonUserInfo>(context, listen: false).uid,
       waterLevel: 0.0,
       height: 0.0

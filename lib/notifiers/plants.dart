@@ -34,13 +34,7 @@ class PlantsModel extends ChangeNotifier {
     CollectionReference plants = FirebaseFirestore.instance.collection('plants');
 
     DocumentReference doc = await plants
-        .add({
-          'name': newPlant.name,
-          'user': newPlant.user,
-          'waterLevel': newPlant.waterLevel,
-          'height': newPlant.height,
-          'createdAt': newPlant.createdAt,
-        });
+        .add(newPlant.toMap());
 
     newPlant.id = doc.id;
     return newPlant;
