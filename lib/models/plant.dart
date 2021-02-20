@@ -62,7 +62,23 @@ class Plant {
     'growDuration': this.growDuration.inDays,
   };
 
-  static Plant fromDoc(DocumentSnapshot doc) => Plant(
+  Plant.fromDoc(DocumentSnapshot doc) : this(
+    doc.get("name") as String,
+    doc.id,
+    height: doc.get("height") as double,
+    waterLevel: doc.get("waterLevel") as double,
+    createdAt: DateTime.fromMillisecondsSinceEpoch((doc.get("createdAt") as Timestamp).millisecondsSinceEpoch),
+    frequencyCount: doc.get("frequencyCount") as int,
+    frequencyDuration: Duration(days: doc.get("frequencyDuration") as int),
+    growDuration: Duration(days: doc.get("growDuration") as int),
+  );
+}
+
+
+class Vine extends Plant {
+  Vine(String name, String id) : super(name, id);
+
+  Vine.fromDoc(DocumentSnapshot doc) : super(
     doc.get("name") as String,
     doc.id,
     height: doc.get("height") as double,

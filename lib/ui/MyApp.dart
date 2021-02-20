@@ -15,28 +15,29 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: PlantsModel.fetchPlants(this.currentUser.user.uid),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return MultiProvider(
-            providers: [
-              ChangeNotifierProvider(create: (context) => PlantsModel(plants: snapshot.data)),
-              Provider(create: (context) => AnonUserInfo(this.currentUser.user.uid)),
-            ],
-            child: MaterialApp(
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => PlantNotifier()),
+        ChangeNotifierProvider(create: (context) => VineNotifier()),
+        Provider(create: (context) => AnonUserInfo(this.currentUser.user.uid)),
+      ],
+      builder: (context, child) => FutureBuilder(
+        future: Future.wait([
+          Provider.of<PlantNotifier>(context).fetch(Provider.of<AnonUserInfo>(context).uid),
+          Provider.of<VineNotifier>(context).fetch(Provider.of<AnonUserInfo>(context).uid),
+        ]),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return MaterialApp(
               title: 'Planttracker',
               theme: plantingTheme,
               initialRoute: "/home",
               onGenerateRoute: PageRoutes.onGenerateRoute,
-            )
-          );
-        }
-        else {
+            );
+          }
           return SplashScreenPage();
         }
-      }
+      ),
     );
   }
-
 }

@@ -4,25 +4,26 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 import 'package:plantingapp/models/models.dart';
 
-class PlantsModel extends ChangeNotifier {
+abstract class PlantsModel<T extends Plant> extends ChangeNotifier {
   /// Internal, private state of the plants.
-  final List<Plant> _plants = [];
+  final List<T> _plants = [];
+  final String collectionName;
 
-  PlantsModel({List<Plant> plants}) {
+  PlantsModel(this.collectionName, {List<T> plants}) {
     if (plants != null) {
       print(plants);
       this._plants.addAll(plants);
     }
   }
   /// An unmodifiable view of the items in the cart.
-  UnmodifiableListView<Plant> get plants => UnmodifiableListView(_plants);
+  UnmodifiableListView<T> get plants => UnmodifiableListView(_plants);
 
   /// The count of plants.
   int get plantCount => _plants.length;
 
   /// Adds [plant] to the list of plants.
-  Future<void> add(Plant newPlant) async {
-    Plant savedPlant = await addToFirebase(newPlant);
+  Future<void> add(T newPlant) async {
+    T savedPlant = await addToFirebase(newPlant, this.collectionName);
 
     this._plants.add(savedPlant);
 
@@ -30,11 +31,10 @@ class PlantsModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<Plant> addToFirebase(Plant newPlant) async {
-    CollectionReference plants = FirebaseFirestore.instance.collection('plants');
+  Future<Plant> addToFirebase(T newPlant, String collectionName) async {
+    CollectionReference plants = FirebaseFirestore.instance.collection(collectionName);
 
-    DocumentReference doc = await plants
-        .add(newPlant.toMap());
+    DocumentReference doc = await plants.add(newPlant.toMap());
 
     newPlant.id = doc.id;
     return newPlant;
@@ -46,17 +46,38 @@ class PlantsModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  static Future<List<Plant>> fetchPlants(String uid) async {
-    CollectionReference plants = FirebaseFirestore.instance.collection('plants');
-    List<Plant> plantList = [];
+  Future<List<T>> fetch(String uid) async {
+    CollectionReference plants = FirebaseFirestore.instance.collection(this.collectionName);
+    List<T> plantList = [];
 
     QuerySnapshot snapshot = await plants.where("user", isEqualTo: uid).get();
 
     snapshot.docs.forEach((el) {
-      plantList.add(Plant.fromDoc(el));
-      print(el.id);
+      plantList.add(this.doc2Object(el));
     });
 
     return plantList;
+  }
+
+  T doc2Object(DocumentSnapshot doc);
+}
+
+class PlantNotifier extends PlantsModel<Plant> {
+  PlantNotifier({List<Plant> plants}) : 
+  super("plants", plants: plants);
+
+  @override
+  Plant doc2Object(DocumentSnapshot doc) {
+    return Plant.fromDoc(doc);
+  }
+}
+
+class VineNotifier extends PlantsModel<Vine> {
+  VineNotifier({List<Vine> vines}) : 
+  super("vines", plants: vines);
+
+  @override
+  Vine doc2Object(DocumentSnapshot doc) {
+    return Vine.fromDoc(doc);
   }
 }
