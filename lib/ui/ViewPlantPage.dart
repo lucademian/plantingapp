@@ -12,7 +12,13 @@ class ViewPlantPage extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(icon: Icon(Icons.close), onPressed: () => Navigator.of(context).pop(),),
       ),
-      body: Text(plant.name),
+      body: Column(
+        children: [
+          Text("NAME: " + plant.name),
+          Text("WATER: " + plant.frequencyCount.toString() + " times every " + plant.freqDurationName),
+          Text("GROWING FOR: " + plant.growDuration.inDays.toString() + " days"),
+        ],
+      ),
     );
   }
 }

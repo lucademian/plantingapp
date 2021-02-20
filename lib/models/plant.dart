@@ -36,7 +36,13 @@ class Plant {
   // height increments 24x per day
   int get heightIncrement => this.growDuration.inDays;
   int get maxHeight => this.growDuration.inHours;
-
+  String get freqDurationName {
+    switch (this.frequencyDuration.inDays) {
+      case 30: return "Month";
+      case 7: return "Week";
+      default: return "Day";
+    }
+  }
   void feed(double foodCount) {
     this.height += heightIncrement;
   }
