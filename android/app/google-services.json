@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "868305946170",
+    "project_id": "planting-5f68c",
+    "storage_bucket": "planting-5f68c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:868305946170:android:074637f9c06a55011d9703",
+        "android_client_info": {
+          "package_name": "com.example.plantingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "868305946170-030cc41gi5dkqtjr6uaqmqq6vtp51vi6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHazkHdeFEbWfg596286OTRSrIitJ4vLI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "868305946170-030cc41gi5dkqtjr6uaqmqq6vtp51vi6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
