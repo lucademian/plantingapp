@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:plantingapp/models/models.dart';
 import 'package:plantingapp/ui/SolidButton.dart';
 
+import 'PlantTile.dart';
+
 class PlantsList extends StatelessWidget {
   final UnmodifiableListView<Plant> _plants;
   
@@ -25,9 +27,7 @@ class PlantsList extends StatelessWidget {
         }
 
         Plant thisPlant = _plants[idx - 1];
-        return Container(
-          child: Text(thisPlant.id)
-        );
+        return PlantTile(thisPlant);
       }
     );
   }  
