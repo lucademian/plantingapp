@@ -26,7 +26,7 @@ class NoPlantsScreen extends StatelessWidget {
             "Grow Your First Plant", 
             theme: SolidButtonTheme.green,
             onPressed: () => {
-              Provider.of<PlantsModel>(context, listen: false).add(Plant(height: 5))
+              Navigator.of(context).pushNamed("/new-plant")
             },
           ),
           SolidButton(
