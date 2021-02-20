@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plantingapp/models/models.dart';
 import 'package:plantingapp/ui/HomePage.dart';
+import 'package:plantingapp/ui/LearnMorePage.dart';
 import 'package:plantingapp/ui/NewPlantPage.dart';
 import 'package:plantingapp/ui/SplashScreenPage.dart';
 import 'package:plantingapp/ui/ViewPlantPage.dart';
@@ -16,6 +17,7 @@ class PageRoutes {
       case '/home': return routeBuilder(HomePage(), settings);
       case '/view-plant': return routeBuilder(ViewPlantPage(settings.arguments as Plant), settings);
       case '/new-plant': return routeBuilder(NewPlantPage(), settings);
+      case '/learn-more': return routeBuilder(LearnMorePage(), settings);
       case '/loading':
       default: return routeBuilder(SplashScreenPage(), settings,);
     }

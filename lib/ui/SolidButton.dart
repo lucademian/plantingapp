@@ -10,10 +10,12 @@ class SolidButton extends StatelessWidget {
   final String text;
   final SolidButtonTheme theme;
   final Function() onPressed;
+  final double width;
 
   SolidButton(this.text, {
     this.theme = SolidButtonTheme.green,
-    this.onPressed
+    this.onPressed,
+    this.width = -1,
   });
 
   @override
@@ -23,7 +25,7 @@ class SolidButton extends StatelessWidget {
       child: Text(this.text),
       textColor: this._getTextColor(),
       color: this._getButtonColor(),
-      minWidth: MediaQuery.of(context).size.width - 200,
+      minWidth: this.width < 0 ? MediaQuery.of(context).size.width - 200 : this.width,
     );
   }
 
