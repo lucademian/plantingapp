@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plantingapp/app/routes.dart';
 
 import 'app/theme.dart';
 import 'ui/HomePage.dart';
@@ -14,7 +15,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Planttracker',
       theme: plantingTheme,
-      home: HomePage(),
+      initialRoute: "/loading",
+      onGenerateRoute: PageRoutes.onGenerateRoute,
     );
   }
 }
