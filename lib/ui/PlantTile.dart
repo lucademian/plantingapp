@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:plantingapp/models/models.dart';
 
+import 'PlantImage.dart';
+
 class PlantTile extends StatelessWidget {
   final Plant plant;
 
@@ -10,7 +12,7 @@ class PlantTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: ListTile(
-        leading: Icon(Icons.image),
+        leading: PlantImage(this.plant),
         title: Text(plant.name),
         subtitle: Text(plant.createdAt.toString()),
         onTap: () {

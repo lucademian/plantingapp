@@ -17,12 +17,15 @@ class PlantsList extends StatelessWidget {
       itemCount: plants.length + 1,
       itemBuilder: (context, idx) {
         if (idx == 0) {
-          return SolidButton(
-            "Grow a New Plant", 
-            theme: SolidButtonTheme.green,
-            onPressed: () => {
-              Navigator.of(context).pushNamed("/new-plant")
-            },
+          return Container(
+            width: MediaQuery.of(context).size.width - 100,
+            child: SolidButton(
+              "Grow a New Plant", 
+              theme: SolidButtonTheme.green,
+              onPressed: () => {
+                Navigator.of(context).pushNamed("/new-plant")
+              },
+            ),
           );
         }
         Plant thisPlant = plants[idx - 1];

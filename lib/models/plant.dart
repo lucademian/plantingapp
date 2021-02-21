@@ -76,7 +76,39 @@ class Plant {
 
 
 class Vine extends Plant {
-  Vine(String name, String id) : super(name, id);
+  String user;
+  double height;
+  Duration unitTime; //unit of time in which to achieve sub-goal
+  double unitGoal; //goal to be achieved in particular time unit
+  double goalHeight; //height corresponding to cumulative goal
+  DateTime createdAt;
+
+  Vine(String name, 
+    String id, 
+    double height,
+    DateTime createdAt,
+    this.user,
+    this.unitTime,
+    this.unitGoal,
+    this.goalHeight) :
+  this.height = height == null ? 0 : height,
+  this.createdAt = createdAt == null ? DateTime.now() : createdAt,
+  super(name, id);
+
+  //grows vine according to unit goal, scaled up (or down) by the progress toward unitGoal
+  void growVine(double goalProgress) {
+    this.height += this.unitGoal * (goalProgress/this.unitGoal);
+  }
+
+  Map<String, dynamic> toMap() => {
+    'name': this.name,
+    'user': this.user,
+    'unitTime': this.unitTime.inSeconds,
+    'height': this.height,
+    'createdAt': this.createdAt,
+    'unitGoal': this.unitGoal,
+    'goalHeight': this.goalHeight,
+  };
 
   Vine.fromDoc(DocumentSnapshot doc) : super(
     doc.get("name") as String,

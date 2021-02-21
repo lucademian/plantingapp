@@ -8,18 +8,18 @@ import 'package:plantingapp/notifiers/user.dart';
 import 'package:plantingapp/ui/SolidButton.dart';
 import 'package:provider/provider.dart';
 
-class NewPlantPage extends StatefulWidget {
+class NewVinePage extends StatefulWidget {
   @override
-  _NewPlantPageState createState() => _NewPlantPageState();
+  _NewVinePageState createState() => _NewVinePageState();
 }
 
-class _NewPlantPageState extends State<NewPlantPage> {
+class _NewVinePageState extends State<NewVinePage> {
   final _formKey = GlobalKey<FormState>();
   final Map<String, dynamic> formData = {
     'name': null, 
-    'xPer': null, 
-    'per': null,
-    'xDur': null,
+    'uGoal': null, 
+    'uTime': null,
+    'cGoal': null,
     'dur': null
   };
 
@@ -44,12 +44,12 @@ class _NewPlantPageState extends State<NewPlantPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Grow a Plant", style: Theme.of(context).textTheme.headline1,)
+                        Text("Grow a Vine", style: Theme.of(context).textTheme.headline1,)
                       ],
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 20, bottom: 8.0),
-                      child: Text("My plant will be named", style: Theme.of(context).textTheme.headline4,),
+                      child: Text("My vine tracks my progress toward", style: Theme.of(context).textTheme.headline4,),
                     ),
                     ClipRRect(
                       borderRadius: BorderRadius.all(Radius.circular(6)),
@@ -66,7 +66,7 @@ class _NewPlantPageState extends State<NewPlantPage> {
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 20, bottom: 8.0),
-                      child: Text("I will water my plant", style: Theme.of(context).textTheme.headline4,),
+                      child: Text("I expect to do this", style: Theme.of(context).textTheme.headline4,),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -86,7 +86,7 @@ class _NewPlantPageState extends State<NewPlantPage> {
                                 filled: true,
                               ),
                               onSaved: (newValue) {
-                                formData['xPer'] = int.parse(newValue);
+                                formData['uGoal'] = int.parse(newValue);
                               },
                             ),
                           ),
@@ -100,7 +100,7 @@ class _NewPlantPageState extends State<NewPlantPage> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text("Every", style: Theme.of(context).textTheme.headline4,),
+                          Text("per", style: Theme.of(context).textTheme.headline4,),
                           Container(
                             width: 120,
                             padding: EdgeInsets.only(left: 20),
@@ -114,7 +114,7 @@ class _NewPlantPageState extends State<NewPlantPage> {
                                   filled: true,
                                 ),
                                 onChanged: (newValue) {
-                                  formData['per'] = newValue;
+                                  formData['uTime'] = newValue;
                                 },
                                 items: [
                                   DropdownMenuItem(
@@ -140,10 +140,10 @@ class _NewPlantPageState extends State<NewPlantPage> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text("For", style: Theme.of(context).textTheme.headline4,),
+                        Text("Until I\'ve done it", style: Theme.of(context).textTheme.headline4,),
                         Container(
                           width: 70,
-                          padding: EdgeInsets.only(left: 20),
+                          padding: EdgeInsets.only(right: 20),
                           child: ClipRRect(
                             borderRadius: BorderRadius.all(Radius.circular(6)),
                             child: TextFormField(
@@ -155,49 +155,75 @@ class _NewPlantPageState extends State<NewPlantPage> {
                                 filled: true,
                               ),
                               onSaved: (newValue) {
-                                formData['xDur'] = int.parse(newValue);
+                                formData['cGoal'] = int.parse(newValue);
                               },
                             ),
                           ),
                         ),
-                        Container(
-                          width: 120,
-                          padding: EdgeInsets.only(left: 20),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.all(Radius.circular(6)),
-                            child: DropdownButtonFormField<Duration>(
-                              iconSize: 20,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                fillColor: Colors.black12,
-                                filled: true,
-                              ),
-                              onChanged: (newValue) {
-                                formData['dur'] = newValue;
-                              },
-                              items: [
-                                DropdownMenuItem(
-                                  child: Text("Days"),
-                                  value: Duration(days: 1),
-                                ),
-                                DropdownMenuItem(
-                                  child: Text("Weeks"),
-                                  value: Duration(days: 7),
-                                ),
-                                DropdownMenuItem(
-                                  child: Text("Months"),
-                                  value: Duration(days: 30),
-                                )
-                              ],
-                            ),
-                          )
-                        ),
+                            
+                        // Container(
+                        //   width: 70,
+                        //   padding: EdgeInsets.only(left: 20),
+                        //   child: ClipRRect(
+                        //     borderRadius: BorderRadius.all(Radius.circular(6)),
+                        //     child: TextFormField(
+                        //       keyboardType: TextInputType.number,
+                        //       validator: (val) => int.tryParse(val) != null ? null : "Invalid Number",
+                        //       decoration: InputDecoration(
+                        //         border: InputBorder.none,
+                        //         fillColor: Colors.black12,
+                        //         filled: true,
+                        //       ),
+                        //       onSaved: (newValue) {
+                        //         formData['xDur'] = int.parse(newValue);
+                        //       },
+                        //     ),
+                        //   ),
+                        // ),
+                        // Container(
+                        //   width: 120,
+                        //   padding: EdgeInsets.only(left: 20),
+                        //   child: ClipRRect(
+                        //     borderRadius: BorderRadius.all(Radius.circular(6)),
+                        //     child: DropdownButtonFormField<Duration>(
+                        //       iconSize: 20,
+                        //       decoration: InputDecoration(
+                        //         border: InputBorder.none,
+                        //         fillColor: Colors.black12,
+                        //         filled: true,
+                        //       ),
+                        //       onChanged: (newValue) {
+                        //         formData['dur'] = newValue;
+                        //       },
+                        //       items: [
+                        //         DropdownMenuItem(
+                        //           child: Text("Days"),
+                        //           value: Duration(days: 1),
+                        //         ),
+                        //         DropdownMenuItem(
+                        //           child: Text("Weeks"),
+                        //           value: Duration(days: 7),
+                        //         ),
+                        //         DropdownMenuItem(
+                        //           child: Text("Months"),
+                        //           value: Duration(days: 30),
+                        //         )
+                        //       ],
+                        //     ),
+                        //   )
+                        // ),
                       ],
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text("Times", style: Theme.of(context).textTheme.headline4,),
+                      ]),
                     Padding(
                       padding: EdgeInsets.only(top: 20, bottom: 20),
                       child: SolidButton(
-                        "Save Plant",
+                        "Save Vine",
                         width: MediaQuery.of(context).size.width - 100,
                         theme: SolidButtonTheme.green,
                         onPressed: () {
@@ -229,7 +255,7 @@ class _NewPlantPageState extends State<NewPlantPage> {
       waterLevel: 0.0,
       height: 0.0
     );
-    await Provider.of<PlantNotifier>(context, listen: false).add(newPlant);
+    await Provider.of<PlantsModel>(context, listen: false).add(newPlant);
     Navigator.of(context).pushNamed("/home");
   }
 }
