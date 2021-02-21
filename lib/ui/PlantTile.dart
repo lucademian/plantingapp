@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:plantingapp/models/models.dart';
 
+import 'PlantImage.dart';
+
 class PlantTile extends StatelessWidget {
   final Plant plant;
 
@@ -17,7 +19,7 @@ class PlantTile extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(6)),
         ),
         child: ListTile(
-          leading: Image(image: AssetImage('assets/plants/' + ((this.plant.height / this.plant.maxHeight * 16).toInt()).toString() + '.png')),
+          leading: PlantImage(this.plant),
           title: Text(plant.name),
           subtitle: Padding(
             padding: EdgeInsets.only(top: 8.0),
@@ -31,8 +33,8 @@ class PlantTile extends StatelessWidget {
           onTap: () {
             Navigator.of(context).pushNamed("/view-plant", arguments: plant);
           },
-        ),
-      ),
+        )
+      )
     );
   }
 }

@@ -26,7 +26,7 @@ class NoVinesScreen extends StatelessWidget {
             "Grow Your First Vine", 
             theme: SolidButtonTheme.green,
             onPressed: () => {
-              Navigator.of(context).pushNamed("/new-plant")
+              Navigator.of(context).pushNamed("/new-vine")
             },
           ),
           SolidButton(
