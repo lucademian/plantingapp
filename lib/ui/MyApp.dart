@@ -21,23 +21,12 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => VineNotifier()),
         Provider(create: (context) => AnonUserInfo(this.currentUser.user.uid)),
       ],
-      builder: (context, child) => FutureBuilder(
-        future: Future.wait([
-          Provider.of<PlantNotifier>(context).fetch(Provider.of<AnonUserInfo>(context).uid),
-          Provider.of<VineNotifier>(context).fetch(Provider.of<AnonUserInfo>(context).uid),
-        ]),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return MaterialApp(
-              title: 'Planttracker',
-              theme: plantingTheme,
-              initialRoute: "/home",
-              onGenerateRoute: PageRoutes.onGenerateRoute,
-            );
-          }
-          return SplashScreenPage();
-        }
-      ),
+      builder: (context, child) => MaterialApp(
+        title: 'Planttracker',
+        theme: plantingTheme,
+        initialRoute: "/home",
+        onGenerateRoute: PageRoutes.onGenerateRoute,
+      )
     );
   }
 }

@@ -13,27 +13,38 @@ import 'PlantsList.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        body: TabBarView(
-          children: <Widget>[
-            MyPlantsPage(),
-            MyVinesPage(),
-            MyAchievementsPage()
-          ],
-        ),
-        bottomNavigationBar: Material(
-          color: Theme.of(context).colorScheme.primary,
-          child: TabBar(
-            tabs: <Widget>[
-              Tab(icon: Icon(Icons.filter_vintage_rounded), child: Text('Plants')),
-              Tab(icon: Icon(Icons.eco), child: Text('Vines')),
-              Tab(icon: Icon(Icons.emoji_events_rounded), child: Text('Achievements')),
-            ]
-          ),
-        ),
-      ),
+    return FutureBuilder(
+      future: Future.wait([
+        Provider.of<PlantNotifier>(context).fetch(Provider.of<AnonUserInfo>(context).uid),
+        Provider.of<VineNotifier>(context).fetch(Provider.of<AnonUserInfo>(context).uid),
+      ]),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return DefaultTabController(
+            length: 3,
+            child: Scaffold(
+              body: TabBarView(
+                children: <Widget>[
+                  MyPlantsPage(),
+                  MyVinesPage(),
+                  MyAchievementsPage()
+                ],
+              ),
+              bottomNavigationBar: Material(
+                color: Theme.of(context).colorScheme.primary,
+                child: TabBar(
+                  tabs: <Widget>[
+                    Tab(icon: Icon(Icons.filter_vintage_rounded), child: Text('Plants')),
+                    Tab(icon: Icon(Icons.eco), child: Text('Vines')),
+                    Tab(icon: Icon(Icons.emoji_events_rounded), child: Text('Achievements')),
+                  ]
+                ),
+              ),
+            ),
+          );
+        }
+        return SplashScreenPage();
+      }
     );
   }
 }

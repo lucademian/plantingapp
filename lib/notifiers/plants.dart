@@ -48,16 +48,13 @@ abstract class PlantsModel<T extends Plant> extends ChangeNotifier {
 
   Future<void> fetch(String uid) async {
     CollectionReference plants = FirebaseFirestore.instance.collection(this.collectionName);
-    List<T> plantList = [];
 
     QuerySnapshot snapshot = await plants.where("user", isEqualTo: uid).get();
 
-    snapshot.docs.forEach((el) {
-      plantList.add(this.doc2Object(el));
-    });
-    
     this._plants.clear();
-    this._plants.addAll(plantList);
+    this._plants.addAll(snapshot.docs.map((el) => this.doc2Object(el)));
+
+    return;
   }
 
   T doc2Object(DocumentSnapshot doc);
