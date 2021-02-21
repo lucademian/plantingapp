@@ -14,19 +14,25 @@ class ViewPlantPage extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(icon: Icon(Icons.close), onPressed: () => Navigator.of(context).pop(),),
       ),
-      body: Column(
-        children: [
-          PlantImage(this.plant),
-          Text("NAME: " + plant.name),
-          Text("WATER: " + plant.frequencyCount.toString() + " times every " + plant.freqDurationName),
-          Text("GROWING FOR: " + plant.growDuration.inDays.toString() + " days"),
-          IconButton(
-            icon: Image.asset('assets/garden_pitcher.png'),
-            iconSize: 50,
-            onPressed: () {},
-          )
-
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            PlantImage(this.plant),
+            Text("NAME: " + plant.name),
+            Text("WATER: " + plant.frequencyCount.toString() + " times every " + plant.freqDurationName),
+            Text("GROWING FOR: " + plant.growDuration.inDays.toString() + " days"),
+            IconButton(
+              icon: Image.asset('assets/waterPitcherWithFlower.PNG'),
+              iconSize: 150,
+              onPressed: () {
+                plant.water(10);
+              },
+            )
+          ],
+        ),
       ),
     );
   }

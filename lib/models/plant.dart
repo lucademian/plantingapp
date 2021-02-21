@@ -44,11 +44,19 @@ class Plant {
     }
   }
   void feed(double foodCount) {
-    this.height += heightIncrement;
+    if (this.height < maxHeight) {
+      this.height += heightIncrement;
+    }
+    else {return;}
   }
 
   void water(double waterAmount) {
-    this.waterLevel += waterIncrement;
+    if (this.waterLevel < maxWater) {
+      this.waterLevel += waterIncrement;
+    }
+    else {
+      return;
+    }
   }
 
   Map<String, dynamic> toMap() => {
