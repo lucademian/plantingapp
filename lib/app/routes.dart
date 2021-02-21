@@ -7,6 +7,8 @@ import 'package:plantingapp/ui/SplashScreenPage.dart';
 import 'package:plantingapp/ui/ViewPlantPage.dart';
 import 'package:plantingapp/ui/NewVinePage.dart';
 import 'package:plantingapp/ui/ViewVinePage.dart';
+import 'package:plantingapp/ui/MyPlantsPage.dart';
+import '../ui/PlantTile.dart';
 
 class PageRoutes {
   static Route<T> routeBuilder<T>(Widget page, RouteSettings settings) {
@@ -21,6 +23,10 @@ class PageRoutes {
       case '/new-plant': return routeBuilder(NewPlantPage(), settings);
       case '/view-vine': return routeBuilder(ViewVinePage(settings.arguments as Vine), settings);
       case '/new-vine': return routeBuilder(NewVinePage(), settings);
+
+      // case '/udpate-plants': return routeBuilder(ViewPlantPage(settings.arguments as Plant), settings);
+      case '/udpate-plants': return routeBuilder(MyPlantsPage(), settings);
+
       case '/learn-more': return routeBuilder(LearnMorePage(), settings);
       case '/loading':
       default: return routeBuilder(SplashScreenPage(), settings,);

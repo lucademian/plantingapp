@@ -3,8 +3,7 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:plantingapp/models/models.dart';
 import 'package:plantingapp/ui/SolidButton.dart';
-
-import 'PlantTile.dart';
+import 'package:plantingapp/ui/VineTile.dart';
 
 class VinesList extends StatelessWidget {
   final UnmodifiableListView<Vine> vines;
@@ -21,13 +20,13 @@ class VinesList extends StatelessWidget {
             "Grow a New Vine", 
             theme: SolidButtonTheme.green,
             onPressed: () => {
-              Navigator.of(context).pushNamed("/new-plant")
+              Navigator.of(context).pushNamed("/new-vine")
             },
           );
         }
         Vine thisVine = vines[idx - 1];
         // TODO vine tile
-        return PlantTile(thisVine);
+        return VineTile(thisVine);
       }
     );
   }  
