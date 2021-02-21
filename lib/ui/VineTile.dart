@@ -32,6 +32,7 @@ class VineTile extends StatelessWidget {
             ),
           ),
           onTap: () {
+            // Navigator.of(context).pushNamed("/view-vine", arguments: vine);
             Navigator.of(context).pushNamed("/view-vine", arguments: vine);
           },
         )

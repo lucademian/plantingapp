@@ -8,6 +8,6 @@ class VineImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image(image: AssetImage('assets/plants/' + ((5).toString() + '.png')));
+    return Image(image: AssetImage('assets/plants/5.png'));
   }
 }

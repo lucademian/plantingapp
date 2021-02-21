@@ -8,7 +8,6 @@ import 'package:plantingapp/ui/ViewPlantPage.dart';
 import 'package:plantingapp/ui/NewVinePage.dart';
 import 'package:plantingapp/ui/ViewVinePage.dart';
 import 'package:plantingapp/ui/MyPlantsPage.dart';
-import '../ui/PlantTile.dart';
 
 class PageRoutes {
   static Route<T> routeBuilder<T>(Widget page, RouteSettings settings) {

@@ -20,11 +20,6 @@ class ViewVinePage extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             VineImage(this.vine),
-            Text("NAME: " + vine.name),
-            Text("WATER: " + vine.frequencyCount.toString()
-                + " times every " + vine.freqDurationName),
-            Text("GROWING FOR: "
-                + vine.growDuration.inDays.toString() + " days"),
             IconButton(
               icon: Image.asset('assets/waterPitcherWithFlower.PNG'),
               iconSize: 150,
