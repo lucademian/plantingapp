@@ -10,7 +10,7 @@ class PlantTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: ListTile(
-        leading: Icon(Icons.image),
+        leading: Image(image: AssetImage('assets/plants/' + ((this.plant.height / this.plant.maxHeight * 16).toInt()).toString() + '.png')),
         title: Text(plant.name),
         subtitle: Text(plant.createdAt.toString()),
         onTap: () {

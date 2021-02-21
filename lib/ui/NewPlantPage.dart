@@ -229,7 +229,7 @@ class _NewPlantPageState extends State<NewPlantPage> {
       waterLevel: 0.0,
       height: 0.0
     );
-    await Provider.of<PlantsModel>(context, listen: false).add(newPlant);
+    await Provider.of<PlantNotifier>(context, listen: false).add(newPlant);
     Navigator.of(context).pushNamed("/home");
   }
 }
