@@ -8,6 +8,8 @@ import 'package:plantingapp/notifiers/user.dart';
 import 'package:plantingapp/ui/SolidButton.dart';
 import 'package:provider/provider.dart';
 
+import '../notifiers/notifiers.dart';
+
 class NewVinePage extends StatefulWidget {
   @override
   _NewVinePageState createState() => _NewVinePageState();
@@ -218,16 +220,17 @@ class _NewVinePageState extends State<NewVinePage> {
   }
 
   Future<void> _submitForm(BuildContext context) async {
-    Plant newPlant = Plant(
+    Vine newVine = Vine(
       formData["name"],
       "No ID Yet",
-      frequencyCount: formData["xPer"],
-      frequencyDuration: formData["per"],
-      growDuration: Duration(days: (formData["dur"] as Duration).inDays * formData["xDur"]),
-      user: Provider.of<AnonUserInfo>(context, listen: false).uid,
-      waterLevel: 0.0,
-    );
-    await Provider.of<PlantsModel>(context, listen: false).add(newPlant);
+      0.0,
+      DateTime.now(),
+      Provider.of<AnonUserInfo>(context, listen: false).uid,
+      formData["per"],
+      0.0,
+      0.0
+      );
+    await Provider.of<VineNotifier>(context, listen: false).add(newVine);
     Navigator.of(context).pushNamed("/home");
   }
 }
