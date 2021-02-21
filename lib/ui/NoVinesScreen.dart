@@ -13,12 +13,12 @@ class NoVinesScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            "App Name Here",
+            "Planting Your Life",
             style: Theme.of(context).textTheme.headline1,
             textAlign: TextAlign.center,
           ),
           Text(
-            "Some kind of tagline maybe",
+            "Starts Here",
             style: Theme.of(context).textTheme.subtitle2,
             textAlign: TextAlign.center,
           ),
@@ -33,6 +33,7 @@ class NoVinesScreen extends StatelessWidget {
             "Learn More", 
             theme: SolidButtonTheme.brown,
             onPressed: () => {
+              Navigator.of(context).pushNamed("/Learn-more")
             },
           )
         ],
