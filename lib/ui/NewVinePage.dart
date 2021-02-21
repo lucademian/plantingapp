@@ -227,7 +227,6 @@ class _NewVinePageState extends State<NewVinePage> {
       growDuration: Duration(days: (formData["dur"] as Duration).inDays * formData["xDur"]),
       user: Provider.of<AnonUserInfo>(context, listen: false).uid,
       waterLevel: 0.0,
-      height: 0.0
     );
     await Provider.of<PlantsModel>(context, listen: false).add(newPlant);
     Navigator.of(context).pushNamed("/home");
