@@ -27,6 +27,8 @@ class PlantTile extends StatelessWidget {
               children: [
                 Icon(Icons.opacity),
                 Text((plant.waterLevel ~/ plant.maxWater).toString() + "%"),
+                Icon(Icons.av_timer),
+                Text(((plant.waterLevel ~/ plant.waterIncrement) * plant.frequencyDuration.inDays).toString() + " days to empty"),
               ],
             ),
           ),
