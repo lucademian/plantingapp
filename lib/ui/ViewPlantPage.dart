@@ -17,6 +17,12 @@ class ViewPlantPage extends StatelessWidget {
           Text("NAME: " + plant.name),
           Text("WATER: " + plant.frequencyCount.toString() + " times every " + plant.freqDurationName),
           Text("GROWING FOR: " + plant.growDuration.inDays.toString() + " days"),
+          IconButton(
+            icon: Image.asset('assets/garden_pitcher.png'),
+            iconSize: 50,
+            onPressed: () {},
+          )
+
         ],
       ),
     );
