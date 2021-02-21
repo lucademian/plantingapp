@@ -6,16 +6,16 @@ import 'SolidButton.dart';
 class SplashScreenPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: 
-            IconButton(
-              icon: Image.asset('assets/danger.png'),
-              iconSize: 150,
-              onPressed: () {
-              },
-            ),
-        );
+
+    return Container(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children:[
+          Image.asset('assets/danger.png'),
+
+        ],
+      ),
+    );
   }
   
 }
