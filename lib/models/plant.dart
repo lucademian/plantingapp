@@ -56,6 +56,9 @@ class Plant {
 
   void water(double waterAmount) {
     if (this.waterLevel < maxWater) {
+      // this.setState({
+      //   date: new Date()
+      // });
       this.waterLevel += waterIncrement;
     }
     else {

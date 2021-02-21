@@ -22,8 +22,10 @@ class ViewPlantPage extends StatelessWidget {
           children: <Widget>[
             PlantImage(this.plant),
             Text("NAME: " + plant.name),
-            Text("WATER: " + plant.frequencyCount.toString() + " times every " + plant.freqDurationName),
-            Text("GROWING FOR: " + plant.growDuration.inDays.toString() + " days"),
+            Text("WATER: " + plant.frequencyCount.toString()
+                + " times every " + plant.freqDurationName),
+            Text("GROWING FOR: "
+                + plant.growDuration.inDays.toString() + " days"),
             IconButton(
               icon: Image.asset('assets/waterPitcherWithFlower.PNG'),
               iconSize: 150,

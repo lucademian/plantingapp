@@ -20,7 +20,6 @@ class _NewVinePageState extends State<NewVinePage> {
     'xper': null, 
     'per': null,
     'cGoal': null,
-    'dur': null
   };
 
   @override

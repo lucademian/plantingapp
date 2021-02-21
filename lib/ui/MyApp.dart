@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         Provider(create: (context) => AnonUserInfo(this.currentUser.user.uid)),
       ],
       builder: (context, child) => MaterialApp(
-        title: 'Planttracker',
+        title: 'PlantYourLife',
         theme: plantingTheme,
         initialRoute: "/home",
         onGenerateRoute: PageRoutes.onGenerateRoute,

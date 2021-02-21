@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plantingapp/models/models.dart';
+import 'VineImage.dart';
 
 class ViewVinePage extends StatelessWidget {
   final Vine vine;
@@ -12,12 +13,26 @@ class ViewVinePage extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(icon: Icon(Icons.close), onPressed: () => Navigator.of(context).pop(),),
       ),
-      body: Column(
-        children: [
-          Text("NAME: " + vine.name),
-          // Text("WATER: " + plant.frequencyCount.toString() + " times every " + plant.freqDurationName),
-          // Text("GROWING FOR: " + plant.growDuration.inDays.toString() + " days"),
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            VineImage(this.vine),
+            Text("NAME: " + vine.name),
+            Text("WATER: " + vine.frequencyCount.toString()
+                + " times every " + vine.freqDurationName),
+            Text("GROWING FOR: "
+                + vine.growDuration.inDays.toString() + " days"),
+            IconButton(
+              icon: Image.asset('assets/waterPitcherWithFlower.PNG'),
+              iconSize: 150,
+              onPressed: () {
+              },
+            )
+          ],
+        ),
       ),
     );
   }
