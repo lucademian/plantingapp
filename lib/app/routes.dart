@@ -22,6 +22,7 @@ class PageRoutes {
       case '/new-plant': return routeBuilder(NewPlantPage(), settings);
       case '/view-vine': return routeBuilder(ViewVinePage(settings.arguments as Vine), settings);
       case '/new-vine': return routeBuilder(NewVinePage(), settings);
+      case '/Learn-more': return routeBuilder(LearnMorePage(), settings);
 
       // case '/udpate-plants': return routeBuilder(ViewPlantPage(settings.arguments as Plant), settings);
       case '/udpate-plants': return routeBuilder(MyPlantsPage(), settings);
